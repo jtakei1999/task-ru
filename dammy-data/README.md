@@ -5,72 +5,42 @@
 英語・数学・国語の3科目各自100点
 
 # カラム名の説明、点数<h3>
-jap-section-1-score  <br>国語大問1の点数<br>
-<br>
-jap-section-2-score  <br>国語大問2の点数<br>
-<br>
-jap-section-3-score  <br>国語大問3の点数<br>
-<br>
-jap-section-4-score  <br>国語大問4の点数<br>
-<br>
-jap-total-score      <br>国語合計点<br>
-<br>
-math-section-1-score <br>数学大問1の点数<br>
-<br>
-math-section-2-score <br>数学大問2の点数<br>
-<br>
-math-section-3-score <br>数学大問3の点数<br>
-<br>
-math-section-4-score <br>数学大問4の点数<br>
-<br>
-math-total-score     <br>数学合計点<br>
-<br>
-eng-section-1-score  <br>英語大問1の点数<br>
-<br>
-eng-section-2-score  <br>英語大問2の点数<br>
-<br>
-eng-section-3-score  <br>英語大問3の点数<br>
-<br>
-eng-section-4-score  <br>英語大問4の点数<br>
-<br>
-eng-total-score      <br>英語合計点<br>
-
-# カラム名の説明、偏差値<h3>
-jap-section-1-std    <br>国語大問1の偏差値<br>
-<br>
-jap-section-2-std    <br>国語大問2の偏差値<br>
-<br>
-jap-section-3-std    <br>国語大問3の偏差値<br>
-<br>
-jap-section-4-std    <br>国語大問4の偏差値<br>
-<br>
-jap-total-std        <br>国語合計点の偏差値<br>
-<br>
-math-section-1-std   <br>数学大問1の偏差値<br>
-<br>
-math-section-2-std   <br>数学大問2の偏差値<br>
-<br>
-math-section-3-std   <br>数学大問3の偏差値<br>
-<br>
-math-section-4-std   <br>数学大問4の偏差値<br>
-<br>
-math-total-std       <br>数学合計点の偏差値<br>
-<br>
-eng-section-1-std    <br>英語大問1の偏差値<br>
-<br>
-eng-section-2-std    <br>英語大問2の偏差値<br>
-<br>
-eng-section-3-std    <br>英語大問3の偏差値<br>
-<br>
-eng-section-4-std    <br>英語大問4の偏差値<br>
-<br>
-eng-total-std        <br>英語合計点の偏差値<br>
+|カラム名|カラムの内容|
+|:---|:----|
+|jap-section-1-score|国語大問1の点数|
+|jap-section-2-score|国語大問2の点数|
+|jap-section-3-score|国語大問3の点数|
+|jap-section-4-score|国語大問4の点数|
+|jap-total-score|国語合計点|
+|math-section-1-score|数学大問1の点数|
+|math-section-2-score|数学大問2の点数|
+|math-section-3-score|数学大問3の点数|
+|math-section-4-score|数学大問4の点数|
+|math-total-score|数学合計点|
+|eng-section-1-score|英語大問1の点数|
+|eng-section-2-score|英語大問2の点数|
+|eng-section-3-score|英語大問3の点数|
+|eng-section-4-score|英語大問4の点数|
+|eng-total-score|英語合計点|
+# 空名の説明、志望校<h3>
+|カラムの内容|カラム名|
+|:---|:---|
+|university|志望している大学のコード|
 
 # 一番下の行の説明<h3>
-ave 　平均点<br>
-std 　標準偏差<br>
-path  合格平均点<br>
+|id|idの内容|
+|:---|:---|
+|101|大学id1の合格者平均点|
+|102|大学id2の合格者平均点|
+|103|大学id3の合格者平均点|
+|104|大学id4の合格者平均点|
+|105|大学id5の合格者平均点|
 
-
-
-
+# 大学コードと対応する大学名
+|大学コード|大学名|
+|:---|:---|
+|1|東京大学|
+|2|筑波大学|
+|3|東京学芸大学|
+|4|埼玉医科大学|
+|5|聖徳大学|
