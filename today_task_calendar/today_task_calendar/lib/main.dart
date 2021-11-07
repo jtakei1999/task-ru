@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'footer.dart'; // footer.dart をインポート
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 void main() {
   // debugPaintSizeEnabled = true;
@@ -11,26 +12,6 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   // This widget is the root of your application.
   @override
-  // Widget build(BuildContext context) {
-  //   return MaterialApp(
-  //     title: 'Flutter Demo',
-  //     theme: ThemeData(
-  //       // This is the theme of your application.
-  //       //
-  //       // Try running your application with "flutter run". You'll see the
-  //       // application has a blue toolbar. Then, without quitting the app, try
-  //       // changing the primarySwatch below to Colors.green and then invoke
-  //       // "hot reload" (press "r" in the console where you ran "flutter run",
-  //       // or simply save your changes to "hot reload" in a Flutter IDE).
-  //       // Notice that the counter didn't reset back to zero; the application
-  //       // is not restarted.
-  //       primarySwatch: Colors.blue,
-  //     ),
-  //     home: const MyHomePage(title: 'Flutter Demo Home Page'),
-  //     // 表示位置を指定
-  //     Text('TextAlign.right', textAlign: TextAlign.right)
-  //   );
-  // }
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
@@ -41,20 +22,20 @@ class MyApp extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              Container(
-                // 横幅
-                width: 330,
-                // 縦幅
-                height: 350,
-                color: Colors.blue,
-                child: Text('カレンダー部分'),
+              SfCalendar(
+                view: CalendarView.month,
+                todayHighlightColor: Colors.red,
+                monthViewSettings: MonthViewSettings(
+                  showAgenda: true,
+                ),
+                dataSource: EventDataSource(_getDataSource()),
               ),
               Column(
                 children: <Widget>[
                   ElevatedButton(
                     onPressed: () {/* ボタンが押せる時 */},
                     style: ElevatedButton.styleFrom(
-                        primary: Colors.red[400],
+                        primary: Colors.red[800],
                         elevation: 32,
                         minimumSize: Size(280, 40),
                         maximumSize: Size(280, 40)),
@@ -63,7 +44,7 @@ class MyApp extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {/* ボタンが押せる時 */},
                     style: ElevatedButton.styleFrom(
-                        primary: Colors.red[600],
+                        primary: Colors.red[400],
                         elevation: 32,
                         minimumSize: Size(280, 40),
                         maximumSize: Size(280, 40)),
@@ -89,42 +70,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// class Footer extends StatefulWidget {
-//   const Footer();
-
-//   @override
-//   _Footer createState() => _Footer();
-// }
-
-// class _Footer extends State {
-//   @override
-//   Widget build(BuildContext context) {
-//     return BottomNavigationBar(
-//       items: const [
-//         BottomNavigationBarItem(
-//           icon: Icon(Icons.home),
-//           title: Text('Home'),
-//         ),
-//         BottomNavigationBarItem(
-//           icon: Icon(Icons.home),
-//           title: Text('Home'),
-//         ),
-//       ],
-//     );
-//   }
-// }
-
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -211,9 +158,10 @@ class Header extends StatelessWidget with PreferredSizeWidget {
         child: Icon(Icons.settings),
       ),
       actions: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Icon(Icons.add),
+        IconButton(
+          // IconButtonを追加
+          icon: Icon(Icons.add), //Iconsの設定アイコンを指定
+          onPressed: () {}, // 動作は空
         ),
       ],
       title: Text(
@@ -224,4 +172,59 @@ class Header extends StatelessWidget with PreferredSizeWidget {
       elevation: 0.0,
     );
   }
+}
+
+class Event {
+  Event(this.eventName, this.from, this.to, this.background, this.isAllDay);
+
+  String eventName;
+  DateTime from;
+  DateTime to;
+  Color background;
+  bool isAllDay;
+}
+
+class EventDataSource extends CalendarDataSource {
+  EventDataSource(List<Event> event) {
+    appointments = event;
+  }
+
+  @override
+  DateTime getStartTime(int index) {
+    return appointments![index].from;
+  }
+
+  @override
+  DateTime getEndTime(int index) {
+    return appointments![index].to;
+  }
+
+  @override
+  String getSubject(int index) {
+    return appointments![index].eventName;
+  }
+
+  @override
+  Color getColor(int index) {
+    return appointments![index].background;
+  }
+
+  @override
+  bool isAllDay(int index) {
+    return appointments![index].isAllDay;
+  }
+}
+
+List<Event> _getDataSource() {
+  final List<Event> event = <Event>[];
+  final DateTime today = DateTime.now();
+  final DateTime startTime =
+      DateTime(today.year, today.month, today.day, 9, 0, 0);
+  final DateTime endTime = startTime.add(const Duration(hours: 2));
+  final DateTime startTime2 =
+      DateTime(today.year, today.month, today.day + 1, 9, 0, 0);
+  final DateTime endTime2 = startTime.add(const Duration(hours: 2));
+  event.add(Event('勉強', startTime, endTime, const Color(0xFF0F8644), false));
+  event.add(Event('勉強', startTime2, endTime, const Color(0xFF0F0044), false));
+  return event;
 }
