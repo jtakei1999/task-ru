@@ -31,7 +31,7 @@ class _ClockTimerState extends State<ClockTimer> {
   /// タイマー文字列用
   String _time = '';
   /// セット時間
-  var setTime = 1;
+  var setTime = 15;
   /// スタート時間を取得する
   var start = DateTime.now();
 
@@ -146,6 +146,13 @@ class _ClockTimerState extends State<ClockTimer> {
       String ss2_2 = ss2.toString();
       ss3 = '0'+ss2_2;
     }
+    if((seconds%60) < 10){
+      String ss4_2 = (seconds%60).toString();
+      ss4 = '0'+ss4_2;
+    }
+    if(mm2 == -1){
+      mm4 = '-0';
+    }
 
     if(mm2 >= 0){
       setState(() => {
@@ -159,6 +166,5 @@ class _ClockTimerState extends State<ClockTimer> {
   }
 }
 
-// todo マイナス0の時の表示
-// todo マイナスの時の桁数
-// todo 文字の色
+
+// todo UI
