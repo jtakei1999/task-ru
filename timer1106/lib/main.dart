@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Timer App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
       ),
       home: ClockTimer(),
     );
@@ -46,7 +46,7 @@ class _ClockTimerState extends State<ClockTimer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('タイマー機能テスト')
+          title: Text('勉強 頑張りましょう！')
       ),
 
       body: Center(
@@ -54,8 +54,8 @@ class _ClockTimerState extends State<ClockTimer> {
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(top:40, left: 20, right: 20),
-              child: Text('取組中のタスク', style: TextStyle(fontSize: 20)),
+              margin: EdgeInsets.only(top:35, left: 20, right: 20),
+              child: Text('取組中のタスク', style: TextStyle(fontSize: 25)),
             ),
             Container(
               width: double.infinity,
@@ -63,13 +63,13 @@ class _ClockTimerState extends State<ClockTimer> {
               margin: EdgeInsets.only(left: 20, right: 20, top: 5),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.0),
-                  color: Colors.redAccent
+                  color: Colors.red[800]
               ),
               child: Text('※ 取組中タスクを表示', style: TextStyle(fontSize: 18)),
             ),
             Container(
-              margin: EdgeInsets.only(top:60, left: 20, right: 20),
-              child: Text('残り時間', style: TextStyle(fontSize: 20)),
+              margin: EdgeInsets.only(top:50, left: 20, right: 20),
+              child: Text('残り時間', style: TextStyle(fontSize: 25)),
             ),
             Container(
               // 内側の余白
@@ -83,7 +83,7 @@ class _ClockTimerState extends State<ClockTimer> {
               child: Text(_time, style: TextStyle(fontSize: 70, color: Colors.white)),
             ),
             Container(
-              margin: EdgeInsets.only(top:80),
+              margin: EdgeInsets.only(top:75),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -96,7 +96,7 @@ class _ClockTimerState extends State<ClockTimer> {
                         primary: Colors.blue,
                         elevation: 8,
                       ),
-                      child: Text("完了", style: TextStyle(fontSize: 20)),
+                      child: Text("完了", style: TextStyle(fontSize: 23)),
                     ),
                   ),
                   SizedBox(
@@ -108,7 +108,7 @@ class _ClockTimerState extends State<ClockTimer> {
                         primary: Colors.red,
                         elevation: 8,
                       ),
-                      child: Text("ギブアップ", style: TextStyle(fontSize: 20)),
+                      child: Text("ギブアップ", style: TextStyle(fontSize: 23)),
                     ),
                   ),
                 ],
@@ -166,5 +166,3 @@ class _ClockTimerState extends State<ClockTimer> {
   }
 }
 
-
-// todo UI
