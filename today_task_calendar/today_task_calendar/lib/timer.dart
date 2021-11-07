@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:intl/intl.dart';
+import 'dummyhomepage.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(TimerPage());
 }
 
-class MyApp extends StatelessWidget {
+class TimerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,7 +32,7 @@ class _ClockTimerState extends State<ClockTimer> {
   String _time = '';
 
   /// セット時間
-  var setTime = 15;
+  var setTime = 45;
 
   /// スタート時間を取得する
   var start = DateTime.now();
@@ -47,7 +48,7 @@ class _ClockTimerState extends State<ClockTimer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('勉強 頑張りましょう！')),
+      appBar: Header(),
       body: Center(
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -56,14 +57,14 @@ class _ClockTimerState extends State<ClockTimer> {
               margin: EdgeInsets.only(top: 35, left: 20, right: 20),
               child: Text('取組中のタスク', style: TextStyle(fontSize: 25)),
             ),
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(25),
-              margin: EdgeInsets.only(left: 20, right: 20, top: 5),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.0),
-                  color: Colors.red[800]),
-              child: Text('※ 取組中タスクを表示', style: TextStyle(fontSize: 18)),
+            ElevatedButton(
+              onPressed: () {/* ボタンが押せる時 */},
+              style: ElevatedButton.styleFrom(
+                  primary: Colors.red[800],
+                  elevation: 32,
+                  minimumSize: Size(280, 70),
+                  maximumSize: Size(280, 70)),
+              child: FittedBox(child: Text('所要時間45分:フォーカスゴールド')),
             ),
             Container(
               margin: EdgeInsets.only(top: 50, left: 20, right: 20),
@@ -89,7 +90,13 @@ class _ClockTimerState extends State<ClockTimer> {
                     width: 150,
                     height: 60,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DummyHomePage()),
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
                         primary: Colors.blue,
                         elevation: 8,
@@ -159,5 +166,33 @@ class _ClockTimerState extends State<ClockTimer> {
     } else {
       setState(() => {_time = mm4 + ':' + ss4});
     }
+  }
+}
+
+class Header extends StatelessWidget with PreferredSizeWidget {
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      leading: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Icon(Icons.settings),
+      ),
+      actions: [
+        IconButton(
+          // IconButtonを追加
+          icon: Icon(Icons.add), //Iconsの設定アイコンを指定
+          onPressed: () {}, // 動作は空
+        ),
+      ],
+      title: Text(
+        '勉強 頑張りましょう!',
+      ),
+      backgroundColor: Colors.black87,
+      centerTitle: true,
+      elevation: 0.0,
+    );
   }
 }

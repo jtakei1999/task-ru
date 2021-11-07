@@ -2,26 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'footer.dart'; // footer.dart をインポート
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-import 'loginpage.dart';
+import 'timer.dart';
+import 'addtaskpage.dart';
 
 void main() {
   // debugPaintSizeEnabled = true;
-  runApp(launch_page());
-  // runApp(const MyApp());
-  // runApp(const LoginPage());
+  runApp(const DummyHomePage());
 }
 
-class launch_page extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Home(),
-    );
-  }
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class DummyHomePage extends StatelessWidget {
+  const DummyHomePage({Key? key}) : super(key: key);
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -49,15 +39,6 @@ class MyApp extends StatelessWidget {
                 flex: 4,
                 child: Column(
                   children: <Widget>[
-                    ElevatedButton(
-                      onPressed: () {/* ボタンが押せる時 */},
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.red[800],
-                          elevation: 32,
-                          minimumSize: Size(280, 40),
-                          maximumSize: Size(280, 40)),
-                      child: FittedBox(child: Text('所要時間45分:フォーカスゴールド')),
-                    ),
                     ElevatedButton(
                       onPressed: () {/* ボタンが押せる時 */},
                       style: ElevatedButton.styleFrom(
@@ -179,7 +160,12 @@ class Header extends StatelessWidget with PreferredSizeWidget {
         IconButton(
           // IconButtonを追加
           icon: Icon(Icons.add), //Iconsの設定アイコンを指定
-          onPressed: () {}, // 動作は空
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AddTask()),
+            );
+          }, // 動作は空
         ),
       ],
       title: Text(
@@ -200,14 +186,6 @@ class Event {
   DateTime to;
   Color background;
   bool isAllDay;
-}
-
-class Task {
-  Task(this.taskName, this.background, this.myTask);
-
-  String taskName;
-  Color background;
-  bool myTask;
 }
 
 class EventDataSource extends CalendarDataSource {
@@ -253,48 +231,4 @@ List<Event> _getDataSource() {
   event.add(Event('勉強', startTime, endTime, const Color(0xFF0F8644), false));
   event.add(Event('勉強', startTime2, endTime, const Color(0xFF0F0044), false));
   return event;
-}
-
-class Home extends StatelessWidget {
-  @override
-  // ここのcontextは上位ツリーで提供されたMaterialAppを含んでいる。
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Hello!'),
-      ),
-      body: Center(
-          child: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.network('http://uploader.sakura.ne.jp/src/up190251.png'),
-            Container(
-              padding: EdgeInsets.only(top: 40),
-              child: Text('早速始めよう！', style: TextStyle(fontSize: 25)),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginPage()),
-                    );
-                  },
-                  child: Text('ログイン', style: TextStyle(fontSize: 22)),
-                ),
-                ElevatedButton(
-                    onPressed: () {
-                      /* ボタンがタップされた時の処理 */
-                    },
-                    child: Text('新規会員登録', style: TextStyle(fontSize: 20))),
-              ],
-            ),
-          ],
-        ),
-      )),
-    );
-  }
 }
