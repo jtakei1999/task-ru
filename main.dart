@@ -18,8 +18,8 @@ class Home extends StatelessWidget {
   // ここのcontextは上位ツリーで提供されたMaterialAppを含んでいる。
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Hello!'),
+      appBar: Header(
+        //title: const Text('Hello!'),
       ),
       body: Center(
           child: SafeArea(
@@ -54,6 +54,33 @@ class Home extends StatelessWidget {
           ],
         ),
       )),
+    );
+  }
+}
+class Header extends StatelessWidget with PreferredSizeWidget {
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      leading: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Icon(Icons.settings),
+      ),
+      actions: [
+        IconButton(
+          // IconButtonを追加
+          icon: Icon(Icons.add), //Iconsの設定アイコンを指定
+          onPressed: () {}, // 動作は空
+        ),
+      ],
+      title: Text(
+        'ようこそ！',
+      ),
+      backgroundColor: Colors.blue,
+      centerTitle: true,
+      elevation: 0.0,
     );
   }
 }
